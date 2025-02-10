@@ -1,0 +1,39 @@
+{
+  "f2d8faef-a934-423b-95f2-4966aa071e03": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1723/1.0.1723.3986/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://uppwc1feb25.sharepoint.com/sites/U2UDevSite_u2u_SharePointSiteURL": {
+        "datasetOverride": {
+          "environmentVariableName": "u2u_SharePointSiteURL",
+          "name": "https://uppwc1feb25.sharepoint.com/sites/U2UDevSite"
+        },
+        "dataSources": {
+          "Issue List": {
+            "tableName": "70d52954-de15-44ba-942a-7c7ef4d25e69",
+            "tableNameOverride": {
+              "environmentVariableName": "u2u_IssueList",
+              "name": "70d52954-de15-44ba-942a-7c7ef4d25e69"
+            }
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Issue List"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "f2d8faef-a934-423b-95f2-4966aa071e03"
+  }
+}

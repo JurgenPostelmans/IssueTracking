@@ -1,0 +1,109 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "u2u_sharedoffice365_1b1b5"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "u2u_sharedsharepointonline_5fc53"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "MaxExpenseAmount (u2u_MaxExpenseAmount)": {
+          "defaultValue": 50,
+          "type": "Int",
+          "metadata": {
+            "schemaName": "u2u_MaxExpenseAmount"
+          }
+        },
+        "SharePoint Site URL (u2u_SharePointSiteURL)": {
+          "defaultValue": "https://uppwc1feb25.sharepoint.com/sites/U2UDevSite",
+          "type": "String",
+          "metadata": {
+            "schemaName": "u2u_SharePointSiteURL"
+          }
+        },
+        "Issue List (u2u_IssueList)": {
+          "defaultValue": "70d52954-de15-44ba-942a-7c7ef4d25e69",
+          "type": "String",
+          "metadata": {
+            "schemaName": "u2u_IssueList"
+          }
+        }
+      },
+      "triggers": {
+        "When_an_item_is_created": {
+          "recurrence": {
+            "interval": 3,
+            "frequency": "Minute"
+          },
+          "splitOn": "@triggerOutputs()?['body/value']",
+          "metadata": {
+            "operationMetadataId": "ace5a290-bc90-42c6-af1e-c93458aabe00"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetOnNewItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "@parameters('SharePoint Site URL (u2u_SharePointSiteURL)')",
+              "table": "@parameters('Issue List (u2u_IssueList)')"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Send_an_email_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6c7803a8-bf81-4141-b796-37fff4f575c9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "jurgen@u2u.be",
+              "emailMessage/Subject": "Issue created",
+              "emailMessage/Body": "<p>issue created : @{triggerOutputs()?['body/Title']}<br>\n<br>\nMax Expense amount: @{string(parameters('MaxExpenseAmount (u2u_MaxExpenseAmount)'))}</p>",
+              "emailMessage/Importance": "Normal"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
