@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25014.162" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25014.00178">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25014.162" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25021.00160">
   <Entities />
   <Roles />
   <Workflows />
@@ -23,6 +23,14 @@
     </connectionreference>
     <connectionreference connectionreferencelogicalname="u2u_sharedsharepointonline_5fc53">
       <connectionreferencedisplayname>SharePoint U2UCaseManagement-5fc53</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="u2u_sharedsharepointonline_b1f6b">
+      <connectionreferencedisplayname>SharePoint U2UCaseManagement-b1f6b</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>
