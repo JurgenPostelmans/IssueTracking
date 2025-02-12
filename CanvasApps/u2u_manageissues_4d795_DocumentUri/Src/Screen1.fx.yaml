@@ -1,5 +1,5 @@
 Screen1 As screen:
-    Fill: =Color.Red
+    Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
 
     "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
@@ -846,8 +846,8 @@ Screen1 As screen:
         DisplayMode: =DisplayMode.Edit
         Height: =74
         OnSelect: |
-            =SubmitForm(Form1);ResetForm(Form1);Notify("New Issue Created")
-        Text: ="Add Issue V2"
+            =SubmitForm(Form1);ResetForm(Form1)
+        Text: ="Add Issue"
         Width: =266
         X: =864
         Y: =429
